@@ -62,7 +62,7 @@ url: /register
 Using Fields: email, password
 ```
 
-### Project conding pattern.
+### Project coding pattern.
 
 
 
