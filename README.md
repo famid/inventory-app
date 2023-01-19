@@ -35,6 +35,7 @@ $ php artisan key:generate
 $ php artisan migrate
 $ php artisan db:seed
 $ npm run dev
+$ php artisan storage:link (To keep the product thumbnail file"
 6. To run the application locally, run:
 
 $ php artisan serve
@@ -57,13 +58,8 @@ Using Fields: name, email, password
 
 Login:
 
-url: /registration
+url: /register
 Using Fields: email, password
-
-Constrains:
-    Email validation is not added.
-    For Production, email validation need to be added.
-
 ```
 
 ### Project conding pattern.
@@ -243,4 +239,14 @@ New requirement is added that products need query by timestamps!!
    We only need to change the only one function(Add only one line!!) in ProductRepository class.
    Don't need to bother about the other part of that feature. 
   ```
+
+```angular2html
+Need to be improved:
+
+1.Email validation is not added. For Production, email 
+validation need to be added.
+2. Pagination is not added in product list view table.
+3. Use a WYSIWYG editor is not added.
+```
+
     
