@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,4 +38,16 @@ Route::middleware('auth')->prefix('/category')->as('category.')->group(function 
 
 Route::middleware('auth')->prefix('/subcategory')->as('subcategory.')->group(function () {
     Route::get('/list', [SubcategoryController::class, 'getList'])->name('list');
+});
+
+Route::middleware('auth')->prefix('/warehouse')->as('warehouse.')->group(function () {
+    Route::get('/index', [WarehouseController::class, 'index'])->name('index');
+    Route::get('/list', [WarehouseController::class, 'getList'])->name('list');
+    Route::delete('/delete/{id}', [WarehouseController::class, 'destroy'])->name('destroy');
+    Route::get('/create', [WarehouseController::class, 'create'])->name('create');
+    Route::post('/store', [WarehouseController::class, 'store'])->name('store');
+});
+
+Route::get('/location/{warehouse_id}', function ($warehouse_id) {
+    dd($warehouse_id);
 });

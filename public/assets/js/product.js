@@ -34,6 +34,9 @@ function handleFilter() {
         renderProductTable()
     })
 
+
+
+
     $('#title').on('keyup', function() {
         if (this.value === '' ) {
             title = null;
