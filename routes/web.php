@@ -4,7 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\WarehouseController;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,4 +50,39 @@ Route::middleware('auth')->prefix('/warehouse')->as('warehouse.')->group(functio
 
 Route::get('/location/{warehouse_id}', function ($warehouse_id) {
     dd($warehouse_id);
+});
+
+Route::get('/data/daraz', function(Request $request){
+    dd( $request->all());
+});
+
+Route::get('/test/daraz', function(){
+
+    $daraz = new \App\Http\Controllers\DarazController();
+    dd($daraz->getToken());
+    $appKey = '500812';
+    $timestamp = $daraz->generateValidTimestamp();
+    $appSecret = 'oz7NCX1BYeIp3RwK7JehtLsj1pbChEzb';
+    $signMethod = 'sha256';
+    $apiName = '/auth/token/create';
+    $data = [
+        'access_token' => $appSecret,
+        'app_key' => $appKey,
+        'sign_method' => $signMethod,
+        'code' => '4_500812_Z6TB1Vs2BU5uvUtiY1YvJT4m338',
+        'timestamp' => $timestamp,
+    ];
+    $data = [ // routes/web.php:56
+        "Host" => '<calculated when request is sent>',
+        "app_key" => "500812",
+  "timestamp" => "1678547394351",
+  "sign_method" => "sha256",
+//  "sign" => "f6867d01edb6d3d65d947291c60e69f783ab26ee894de54b522422b3e8739b6b",
+  "code" => "4_500812_Z6TB1Vs2BU5uvUtiY1YvJT4m338"
+];
+    $sign = $daraz->signApiRequest($data, $apiName, );
+
+    dd($data['timestamp'], $sign);
+    dd($timestamp, $sign);
+
 });
